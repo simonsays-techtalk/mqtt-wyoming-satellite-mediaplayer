@@ -1,0 +1,27 @@
+1. Integrate the Media Player in Home Assistant
+
+    Ensure MQTT discovery works so Home Assistant automatically detects the media player.
+    If it's not discovered, we can manually configure it.
+
+✅ 2. Implement Full TTS Integration
+
+    Send Text-to-Speech (TTS) messages to the satellite.
+    Use Wyoming TTS or an external TTS engine (like Piper or Google Cloud TTS).
+
+✅ 3. Enable Volume Control via MQTT
+
+    Allow Home Assistant to adjust the satellite volume dynamically.
+    Use MQTT commands like "volume_set": 0.5 (50%).
+
+✅ 4. Automate Media Playback
+
+    Example: Play a doorbell sound when the front door opens.
+    Example: Announce weather updates in the morning.
+
+✅ 5. Stream Audio to the Satellite
+
+    Investigate ways to stream live audio from Home Assistant or another device.
+    Possible options:
+    🔹 Use RTP or UDP audio streaming
+    🔹 MQTT-based streaming
+    🔹 Pipe audio from a web radio or file playback
