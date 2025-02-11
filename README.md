@@ -52,11 +52,11 @@ pip install .
 ### **5.1 Disable Unnecessary Audio Devices**
 Edit `config.txt`:
 ```bash
-sudo nano /boot/config.txt
+sudo nano /boot/firmware/config.txt
 ```
-Add the following line at the end:
+Add the following line:
 ```ini
-dtparam=audio=off
+dtoverlay=vc4-kms-v3d,noaudio
 ```
 Save and exit, then reboot:
 ```bash
@@ -67,7 +67,7 @@ sudo reboot
 ```bash
 arecord -l && aplay -l
 ```
-Check if `MS` (seeed-2-mic-voicecard) is listed.
+Check if `MS` (seeed-2-mic-voicecard) is listed, or any other audiodevice.
 
 **Create or edit ALSA configuration:**
 ```bash
@@ -132,15 +132,15 @@ systemctl status wyoming-satellite
 ## ✅ **7. MQTT Testing**
 Test MQTT connection:
 ```bash
-mosquitto_pub -h 192.168.188.62 -u test -P test -t "test/topic" -m "Hello from Wyoming Satellite"
-mosquitto_sub -h 192.168.188.62 -u test -P test -t "test/topic"
+mosquitto_pub -h YOURIPADDRESS -u USER -P PASSWORD -t "test/topic" -m "Hello from Wyoming Satellite"
+mosquitto_sub -h YOURIPADDRESS -u USER -P PASSWORD -t "test/topic"
 ```
 
 ---
 ## ✅ **8. Test Media Playback via MQTT**
 Play a `.wav` file:
 ```bash
-mosquitto_pub -h 192.168.188.62 -u test -P test -t "homeassistant/media_player/wyoming_satellite/command" \
+mosquitto_pub -h YOURIPADDRESS -u USER -P PASSWORD -t "homeassistant/media_player/wyoming_satellite/command" \
   -m '{"command": "play_media", "media_content_id": "file:///home/satellite/wyoming-satellite/sounds/awake.wav"}'
 ```
 Check logs for playback:
@@ -151,7 +151,7 @@ journalctl -u wyoming-satellite --no-pager --lines=50
 ---
 ## ✅ **9. Test TTS via MQTT**
 ```bash
-mosquitto_pub -h 192.168.188.62 -u test -P test -t "homeassistant/tts/speak" \
+mosquitto_pub -h YOURIPADDRESS -u USER -P PASSWORD -t "homeassistant/tts/speak" \
   -m '{"entity_id": "tts.piper", "message": "Hello from Wyoming Satellite"}'
 ```
 
