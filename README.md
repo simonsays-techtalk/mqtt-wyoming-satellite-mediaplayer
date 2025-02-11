@@ -101,7 +101,6 @@ sudo tee /etc/systemd/system/wyoming-satellite.service > /dev/null <<EOF
 Description=Wyoming Satellite Service
 Wants=network-online.target
 After=network-online.target
-Requires=2mic_leds.service
 
 [Service]
 Type=simple
